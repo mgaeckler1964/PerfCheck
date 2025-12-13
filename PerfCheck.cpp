@@ -87,7 +87,7 @@ using namespace winlibGUI;
 
 class CheckMainWindow : public CheckFORM_form
 {
-	typedef gak::PairMap<gak::STRING, LineChart>	TimingsData;
+	typedef gak::PairMap<gak::STRING, Chart2D>	TimingsData;
 
 	STRING		m_cmdLine;
 	TimingsData	m_timingsData;
@@ -214,13 +214,13 @@ winlib::SuccessCode CheckMainWindow::create(const STRING &cmdLine)
 		readCSVLine(inp, &csvLine, ',' );
 		if( csvLine.size() == 6 && csvLine[0] != "file" )
 		{
-			LineChart	&chart = m_timingsData[csvLine[2]];
+			Chart2D	&chart = m_timingsData[csvLine[2]];
 			if( !chart.data.size() )
 			{
 				chart.color = GetNextColor();
 				chart.lineWidth = 2;
 			}
-			chart.data.addElement( ChartLinePoint( chart.data.size(), csvLine[5].getValueN<double>() ) );
+			chart.data.addElement( Chart2dPoint( chart.data.size(), csvLine[5].getValueN<double>() ) );
 		}
 	}
 	return CheckFORM_form::create(nullptr);
@@ -246,7 +246,7 @@ ProcessStatus CheckMainWindow::handleCreate()
 		if( it->getValue().data.size() > 3 )
 		{
 			FunctionNameBOX->addEntry( it->getKey() );
-			CHARTCHILD->addBarChart( BarChart(GetNextColor(), it->getValue().data.size())  );
+			CHARTCHILD->add1dChart( Chart1D(GetNextColor(), it->getValue().data.size())  );
 		}
 //		CHARTCHILD->addChartLine(it->getValue());
 	}
@@ -258,11 +258,11 @@ ProcessStatus CheckMainWindow::handleSelectionChange( int control )
 	if( control == FunctionNameBOX_id )
 	{
 		STRING theFunction = FunctionNameBOX->getSelectedItems();
-		LineChart	&chart = m_timingsData[theFunction];
+		Chart2D	&chart = m_timingsData[theFunction];
 		if( chart.data.size() )
 		{
 			CHARTCHILD->clearData();
-			CHARTCHILD->addChartLine(chart);
+			CHARTCHILD->add2dChart(chart);
 			CHARTCHILD->invalidateWindow();
 		}
 	}

@@ -19,3 +19,5 @@ Example:
 perfcheck c:\temp\gaklib12345.csv
 
 Note: doEnterFunctionEx works in C++-Mode, only.
+
+![screen](https://github.com/user-attachments/assets/1173c3db-2f0e-4e4a-bbad-cfdbe5b33f6d)

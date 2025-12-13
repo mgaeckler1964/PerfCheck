@@ -73,6 +73,8 @@ using namespace winlibGUI;
 // ----- constants ----------------------------------------------------- //
 // --------------------------------------------------------------------- //
 
+static const size_t MIN_COUNT = 3;
+
 // --------------------------------------------------------------------- //
 // ----- macros -------------------------------------------------------- //
 // --------------------------------------------------------------------- //
@@ -88,12 +90,15 @@ using namespace winlibGUI;
 class CheckMainWindow : public CheckFORM_form
 {
 	typedef gak::PairMap<gak::STRING, Chart2D>	TimingsData;
+	typedef gak::PairMap<gak::STRING, Chart1D>	TotalData;
 
 	STRING		m_cmdLine;
 	TimingsData	m_timingsData;
+	TotalData	m_totalTime, m_totalCount;
 
 	virtual ProcessStatus handleCreate();
 	virtual ProcessStatus handleSelectionChange( int control );
+	virtual ProcessStatus handleButtonClick( int control );
 public:
 	CheckMainWindow();
 	winlib::SuccessCode create(const STRING &cmdLine);
@@ -212,7 +217,16 @@ winlib::SuccessCode CheckMainWindow::create(const STRING &cmdLine)
 	while( !inp.eof() )
 	{
 		readCSVLine(inp, &csvLine, ',' );
-		if( csvLine.size() == 6 && csvLine[0] != "file" )
+		if( csvLine.size() >= 8 && csvLine[0] != "file" )
+		{
+			size_t count = csvLine[7].getValueN<double>();
+			if( count > MIN_COUNT )
+			{
+				m_totalCount[csvLine[2]] = Chart1D(GetNextColor(), count );
+				m_totalTime[csvLine[2]] = Chart1D(GetNextColor(), csvLine[5].getValueN<double>() );
+			}
+		}
+		else if( csvLine.size() == 6 && csvLine[0] != "file" )
 		{
 			Chart2D	&chart = m_timingsData[csvLine[2]];
 			if( !chart.data.size() )
@@ -243,7 +257,7 @@ ProcessStatus CheckMainWindow::handleCreate()
 		++it
 	)
 	{
-		if( it->getValue().data.size() > 3 )
+		if( it->getValue().data.size() > MIN_COUNT )
 		{
 			FunctionNameBOX->addEntry( it->getKey() );
 			CHARTCHILD->add1dChart( Chart1D(GetNextColor(), it->getValue().data.size())  );
@@ -267,6 +281,36 @@ ProcessStatus CheckMainWindow::handleSelectionChange( int control )
 		}
 	}
 	return psDO_DEFAULT;
+}
+
+ProcessStatus CheckMainWindow::handleButtonClick( int control )
+{
+	const TotalData	*totalData = nullptr;
+
+	if( control == TimePUSHBUTTON_id )
+	{
+		totalData = &m_totalTime;
+	}
+	else if( control == CountPUSHBUTTON_id )
+	{
+		totalData = &m_totalCount;
+	}
+	if( totalData )
+	{
+		CHARTCHILD->clearData();
+		for(
+			TotalData::const_iterator it = totalData->cbegin(), endIT = totalData->cend();
+			it != endIT;
+			++it
+		)
+		{
+			CHARTCHILD->add1dChart( it->getValue() );
+		}
+		CHARTCHILD->invalidateWindow();
+		return psPROCESSED;
+	}
+
+	return CheckFORM_form::handleButtonClick( control );
 }
 
 // --------------------------------------------------------------------- //

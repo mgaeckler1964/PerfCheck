@@ -18,10 +18,12 @@
 
 namespace winlibGUI {
 
-	const int CHARTCHILD_id=131;
+	const int CHARTCHILD_id=133;
 	const int CheckFORM_id=128;
-	const int ControlCHILD_id=130;
-	const int FunctionNameBOX_id=129;
+	const int ControlCHILD_id=132;
+	const int CountPUSHBUTTON_id=130;
+	const int FunctionNameBOX_id=131;
+	const int TimePUSHBUTTON_id=129;
 
 	class GuiApplication : public winlib::Application {
 		public:
@@ -36,6 +38,8 @@ namespace winlibGUI {
 			return OverlappedWindow::create(parent,"CheckFORM");
 		}
 
+		winlib::PushButton *TimePUSHBUTTON;
+		winlib::PushButton *CountPUSHBUTTON;
 		winlib::ListBox *FunctionNameBOX;
 		winlib::FrameChild *ControlCHILD;
 		winlib::ChartChild *CHARTCHILD;

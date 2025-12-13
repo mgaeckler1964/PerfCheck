@@ -17,11 +17,13 @@ namespace winlibGUI {
 "<forms>\n"
 "<form name=\"CheckFORM\" style=\"277807104\" width=\"758\" height=\"491\" caption=\"Performanc Check\" id=\"128\" baseClass=\"OverlappedWindow\" bgColor=\"COLOR_WINDOW \" bg_red=\"0\" bg_green=\"0\" bg_blue=\"0\">\n"
 "<layoutManager type=\"AttachmentManager\" />\n"
-"<child type=\"FrameChild\" name=\"ControlCHILD\" caption=\"\" x=\"0\" y=\"0\" width=\"280\" height=\"456\" style=\"1342308352\" id=\"130\" bgColor=\"WHITE_BRUSH\" bg_red=\"0\" bg_green=\"0\" bg_blue=\"0\">\n"
+"<child type=\"FrameChild\" name=\"ControlCHILD\" caption=\"\" x=\"0\" y=\"0\" width=\"280\" height=\"456\" style=\"1342308352\" id=\"132\" bgColor=\"WHITE_BRUSH\" bg_red=\"0\" bg_green=\"0\" bg_blue=\"0\">\n"
 "<layout attachment=\"0\" growHeight=\"2\" x=\"0\" y=\"0\" />\n"
-"<child type=\"ListBox\" name=\"FunctionNameBOX\" caption=\"\" x=\"8\" y=\"8\" width=\"248\" height=\"424\" style=\"1353777409\" id=\"129\" />\n"
+"<child type=\"PushButton\" name=\"TimePUSHBUTTON\" caption=\"Time\" x=\"8\" y=\"8\" width=\"80\" height=\"25\" style=\"1342242816\" id=\"129\" />\n"
+"<child type=\"PushButton\" name=\"CountPUSHBUTTON\" caption=\"Count\" x=\"96\" y=\"8\" width=\"80\" height=\"25\" style=\"1342242816\" id=\"130\" />\n"
+"<child type=\"ListBox\" name=\"FunctionNameBOX\" caption=\"\" x=\"8\" y=\"40\" width=\"258\" height=\"395\" style=\"1353777409\" id=\"131\" />\n"
 "</child>\n"
-"<child type=\"ChartChild\" name=\"CHARTCHILD\" caption=\"\" x=\"407\" y=\"145\" width=\"80\" height=\"25\" style=\"1342177280\" id=\"131\">\n"
+"<child type=\"ChartChild\" name=\"CHARTCHILD\" caption=\"\" x=\"407\" y=\"145\" width=\"80\" height=\"25\" style=\"1342177280\" id=\"133\">\n"
 "<layout attachment=\"4\" growWidth=\"1\" growHeight=\"1\" />\n"
 "</child>\n"
 "</form>\n"
@@ -34,6 +36,8 @@ namespace winlibGUI {
 
 
 	void CheckFORM_form::getControls() {
+		TimePUSHBUTTON=static_cast<winlib::PushButton*>(findChild(TimePUSHBUTTON_id));
+		CountPUSHBUTTON=static_cast<winlib::PushButton*>(findChild(CountPUSHBUTTON_id));
 		FunctionNameBOX=static_cast<winlib::ListBox*>(findChild(FunctionNameBOX_id));
 		ControlCHILD=static_cast<winlib::FrameChild*>(findChild(ControlCHILD_id));
 		CHARTCHILD=static_cast<winlib::ChartChild*>(findChild(CHARTCHILD_id));

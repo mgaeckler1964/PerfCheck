@@ -47,6 +47,7 @@
 #include <gak/csv.h>
 
 #include <WINLIB/WINAPP.H>
+#include <WINLIB/DEVICE.H>
 
 #include "PerfCheck_rc.h"
 #include "PerfCheck.gui.h"
@@ -101,7 +102,7 @@ class CheckMainWindow : public CheckFORM_form
 	virtual ProcessStatus handleButtonClick( int control );
 public:
 	CheckMainWindow();
-	winlib::SuccessCode create(const STRING &cmdLine);
+	SuccessCode create(const STRING &cmdLine);
 };
 
 class WindowsApplication : public GuiApplication
@@ -162,19 +163,30 @@ static COLORREF GetNextColor()
 {
 	static const COLORREF color[] =
 	{
-		RGB( 255, 0, 0 ),
-		RGB( 0, 255, 0 ),
-		RGB( 0, 0, 255 ),
-		RGB( 255, 255, 0 ),
-		RGB( 255, 0, 255 ),
-		RGB( 0, 255, 255 ),
-		RGB( 127, 0, 0 ),
-		RGB( 0, 127, 0 ),
-		RGB( 0, 0, 127 ),
-		RGB( 127, 127, 0 ),
-		RGB( 127, 0, 127 ),
-		RGB( 0, 127, 127 ),
-		RGB( 0, 0, 0 )
+		colors::RED,
+		colors::LIME,
+		colors::BLUE,
+		colors::YELLOW,
+		colors::MAGENTA,
+		colors::CYAN,
+		colors::MAROON,
+		colors::GRAY,
+		colors::GREEN,
+		colors::NAVY,
+		colors::OLIVE,
+		colors::PURPE,
+		colors::TEAL,
+		colors::DARK_RED,
+		colors::BROWN,
+		colors::ORANGE,
+		colors::SILVER,
+		colors::KHAKI,
+		colors::YELLOW_GREEN,
+		colors::TURQUOISE,
+		colors::AQUA_MARINE,
+		colors::BLUE_VIOLET,
+		colors::INDIGO,
+		colors::BLACK
 	};
 	static const size_t s_numColors = arraySize(color);
 	static size_t s_curColor = size_t(-1);

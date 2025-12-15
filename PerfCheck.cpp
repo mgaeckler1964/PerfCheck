@@ -243,8 +243,8 @@ winlib::SuccessCode CheckMainWindow::create(const STRING &cmdLine)
 			Chart2D	&chart = m_timingsData[csvLine[2]];
 			if( !chart.data.size() )
 			{
-				chart.color = GetNextColor();
-				chart.lineWidth = 2;
+				chart.color = colors::MAGENTA;
+				chart.lineWidth = 1;
 			}
 			chart.data.addElement( Chart2dPoint( chart.data.size(), csvLine[5].getValueN<double>() ) );
 		}

@@ -262,6 +262,8 @@ winlib::SuccessCode CheckMainWindow::create(const STRING &cmdLine)
    
 ProcessStatus CheckMainWindow::handleCreate()
 {
+	ControlCHILD->setBackgroundColorByRef(colors::AQUA_MARINE);
+	FunctionNameBOX->setBackgroundColorByRef(colors::KHAKI);
 	FunctionNameBOX->setTag( -1 );
 	for(
 		TimingsData::const_iterator it = m_timingsData.cbegin(), endIT = m_timingsData.cend();

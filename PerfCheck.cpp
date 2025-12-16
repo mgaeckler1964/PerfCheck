@@ -47,7 +47,7 @@
 #include <gak/csv.h>
 
 #include <WINLIB/WINAPP.H>
-#include <WINLIB/DEVICE.H>
+#include <WINLIB/colors.h>
 
 #include "PerfCheck_rc.h"
 #include "PerfCheck.gui.h"

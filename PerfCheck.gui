@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <gui>
 <forms>
-<form name="CheckFORM" style="277807104" width="758" height="491" caption="Performanc Check" id="128" baseClass="OverlappedWindow" bgColor="COLOR_WINDOW " bg_red="0" bg_green="0" bg_blue="0">
+<form name="CheckFORM" style="277807104" width="758" height="491" caption="Performance Check" id="128" baseClass="OverlappedWindow" bgColor="Select" bg_red="151" bg_green="255" bg_blue="221">
 <layoutManager type="AttachmentManager" />
-<child type="FrameChild" name="ControlCHILD" caption="" x="0" y="0" width="280" height="456" style="1342308352" id="132" bgColor="WHITE_BRUSH" bg_red="0" bg_green="0" bg_blue="0">
+<child type="FrameChild" name="ControlCHILD" caption="" x="0" y="0" width="280" height="456" style="1342308352" id="132" bgColor="NULL_BRUSH" bg_red="0" bg_green="0" bg_blue="0">
 <layout attachment="0" growHeight="2" x="0" y="0" />
 <child type="PushButton" name="TimePUSHBUTTON" caption="Time" x="8" y="8" width="80" height="25" style="1342242816" id="129" />
 <child type="PushButton" name="CountPUSHBUTTON" caption="Count" x="96" y="8" width="80" height="25" style="1342242816" id="130" />
-<child type="ListBox" name="FunctionNameBOX" caption="" x="8" y="40" width="258" height="395" style="1353777409" id="131" />
+<child type="ListBox" name="FunctionNameBOX" caption="" x="8" y="40" width="256" height="392" style="1353777409" id="131" bgColor="Select" bg_red="240" bg_green="230" bg_blue="140" />
 </child>
 <child type="ChartChild" name="CHARTCHILD" caption="" x="407" y="145" width="80" height="25" style="1342177280" id="133">
 <layout attachment="4" growWidth="1" growHeight="1" />

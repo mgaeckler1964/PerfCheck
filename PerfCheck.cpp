@@ -114,7 +114,7 @@ class WindowsApplication : public GuiApplication
 		doEnableLogEx(gakLogging::llInfo);
 		doDisableLog();
 		setApplication("PerfCheck");
-		setComapny("gak");
+		setCompany("gak");
 		return false;
 	}
 	virtual CallbackWindow  *createMainWindow( const char *cmdLine, int /*nCmdShow*/ )

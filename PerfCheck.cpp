@@ -119,7 +119,7 @@ class WindowsApplication : public GuiApplication
 	}
 	virtual CallbackWindow  *createMainWindow( const char *cmdLine, int /*nCmdShow*/ )
 	{
-		std::auto_ptr<CheckMainWindow>	mainWindow( new CheckMainWindow );
+		std::unique_ptr<CheckMainWindow>	mainWindow( new CheckMainWindow );
 		if( mainWindow->create( cmdLine ) == scERROR )
 		{
 			throw gak::LibraryException( "Could not create window!" );

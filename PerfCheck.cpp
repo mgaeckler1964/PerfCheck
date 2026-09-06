@@ -97,9 +97,9 @@ class CheckMainWindow : public CheckFORM_form
 	TimingsData	m_timingsData;
 	TotalData	m_totalTime, m_totalCount;
 
-	virtual ProcessStatus handleCreate();
-	virtual ProcessStatus handleSelectionChange( int control );
-	virtual ProcessStatus handleButtonClick( int control );
+	ProcessStatus handleCreate() override;
+	ProcessStatus handleSelectionChange( int control ) override;
+	ProcessStatus handleButtonClick( int control ) override;
 public:
 	CheckMainWindow();
 	SuccessCode create(const STRING &cmdLine);
@@ -107,7 +107,7 @@ public:
 
 class WindowsApplication : public GuiApplication
 {
-	virtual bool startApplication( HINSTANCE /*hInstance*/, const char *cmdLine )
+	bool startApplication( HINSTANCE /*hInstance*/, const char *cmdLine ) override
 	{
 		if( !cmdLine || !*cmdLine )
 			throw gak::LibraryException("Bad command line. Missing timings.csv!");
@@ -117,7 +117,7 @@ class WindowsApplication : public GuiApplication
 		setCompany("gak");
 		return false;
 	}
-	virtual CallbackWindow  *createMainWindow( const char *cmdLine, int /*nCmdShow*/ )
+	CallbackWindow  *createMainWindow( const char *cmdLine, int /*nCmdShow*/ ) override
 	{
 		std::unique_ptr<CheckMainWindow>	mainWindow( new CheckMainWindow );
 		if( mainWindow->create( cmdLine ) == scERROR )
@@ -128,7 +128,7 @@ class WindowsApplication : public GuiApplication
 
 		return mainWindow.release();
 	}
-	virtual void deleteMainWindow( BasicWindow  *mainWindow )
+	void deleteMainWindow( BasicWindow  *mainWindow ) override
 	{
 		delete mainWindow;
 	}

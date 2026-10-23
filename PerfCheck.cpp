@@ -117,7 +117,7 @@ class WindowsApplication : public GuiApplication
 		setCompany("gak");
 		return false;
 	}
-	CallbackWindow  *createMainWindow( const char *cmdLine, int /*nCmdShow*/ ) override
+	CallbackWindow  *createMainWindow( const char *cmdLine, ShowWindowMode /*nCmdShow*/ ) override
 	{
 		std::unique_ptr<CheckMainWindow>	mainWindow( new CheckMainWindow );
 		if( mainWindow->create( cmdLine ) == scERROR )

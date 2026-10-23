@@ -44,5 +44,6 @@ bin/
 *.suo
 *.sdf
 ipch/
+*.opensdf
 
 gaklib*.csv

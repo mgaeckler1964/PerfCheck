@@ -174,7 +174,7 @@ static COLORREF GetNextColor()
 		colors::GREEN,
 		colors::NAVY,
 		colors::OLIVE,
-		colors::PURPE,
+		colors::PURPLE,
 		colors::TEAL,
 		colors::DARK_RED,
 		colors::BROWN,
@@ -188,12 +188,9 @@ static COLORREF GetNextColor()
 		colors::INDIGO,
 		colors::BLACK
 	};
-	static const size_t s_numColors = arraySize(color);
 	static size_t s_curColor = size_t(-1);
 
-	++s_curColor;
-	if( s_curColor >= s_numColors )
-		s_curColor = 0;
+	s_curColor = nextIndex( color, s_curColor );
 	return color[s_curColor];
 }
 

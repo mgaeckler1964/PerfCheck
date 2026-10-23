@@ -228,10 +228,10 @@ winlib::SuccessCode CheckMainWindow::create(const STRING &cmdLine)
 		readCSVLine(inp, &csvLine, ',' );
 		if( csvLine.size() >= 8 && csvLine[0] != "file" )
 		{
-			size_t count = csvLine[7].getValueN<double>();
+			size_t count = csvLine[7].getValueN<size_t>();
 			if( count > MIN_COUNT )
 			{
-				m_totalCount[csvLine[2]] = Chart1D(GetNextColor(), count );
+				m_totalCount[csvLine[2]] = Chart1D(GetNextColor(), double(count) );
 				m_totalTime[csvLine[2]] = Chart1D(GetNextColor(), csvLine[5].getValueN<double>() );
 			}
 		}
@@ -243,7 +243,7 @@ winlib::SuccessCode CheckMainWindow::create(const STRING &cmdLine)
 				chart.color = colors::MAGENTA;
 				chart.lineWidth = 1;
 			}
-			chart.data.addElement( Chart2dPoint( chart.data.size(), csvLine[5].getValueN<double>() ) );
+			chart.data.addElement( Chart2dPoint( double(chart.data.size()), csvLine[5].getValueN<double>() ) );
 		}
 	}
 	return CheckFORM_form::create(nullptr);
@@ -269,7 +269,7 @@ ProcessStatus CheckMainWindow::handleCreate()
 		if( it->getValue().data.size() > MIN_COUNT )
 		{
 			FunctionNameBOX->addEntry( it->getKey() );
-			CHARTCHILD->add1dChart( Chart1D(GetNextColor(), it->getValue().data.size())  );
+			CHARTCHILD->add1dChart( Chart1D(GetNextColor(), double(it->getValue().data.size())) );
 		}
 //		CHARTCHILD->addChartLine(it->getValue());
 	}
